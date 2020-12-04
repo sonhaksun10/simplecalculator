@@ -6,6 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class CalculatorTest {
     @Test
+    void calculateBi() {
+        Calculator calc = new Calculator();
+
+        Double res = calc.calculateBi(Calculator.BiOperatorModes.normal, 2.0);
+        assertEquals(NaN,res);
+
+        res = calc.calculateBi(Calculator.BiOperatorModes.add, 4.5);
+        assertEquals(6.5, res);
+    }
+
+    @Test
     void testAdd() {
         Calculator calc = new Calculator();
 
@@ -29,6 +40,7 @@ class CalculatorTest {
         // second operation
         res = calc.calculateBi(Calculator.BiOperatorModes.multiply, 2.0);
         assertEquals(res, 4.0);
+
     }
 
     @Test
