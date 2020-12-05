@@ -8,6 +8,7 @@
 
 package com.simplejavacalculator;
 
+/*This class contains main function*/
 public class SimpleJavaCalculator {
    
    public static void main(String[] args) {
@@ -15,6 +16,7 @@ public class SimpleJavaCalculator {
          UI uiCal = new UI();
          uiCal.init();
       }
+      //print error message when error occurred
       catch (Exception e) {
          System.out.println(e.getMessage());   
       }

@@ -13,41 +13,44 @@ import static java.lang.Math.log10;
 import static java.lang.Math.pow;
 
 public class Calculator {
-
+    //defind two kinds of modes
     public enum BiOperatorModes {
-        normal, add, minus, multiply, divide , xpowerofy 
+        NORMAL, ADD, MINUS, MULTIPLY, DIVIDE, XPOWEROFY
     }
 
     public enum MonoOperatorModes {
-        square, squareRoot, oneDevidedBy, cos, sin, tan ,log , rate, abs
+        SQUARE, SQUAREROOT, ONEDEVIDEBY, COS, SIN, TAN, LOG, RATE, ABS
     }
 
-    private Double num1, num2;
-    private BiOperatorModes mode = BiOperatorModes.normal;
+    //define private fields
+    private Double num1;
+    private Double num2;
+    private BiOperatorModes mode = BiOperatorModes.NORMAL;
 
     // should have constructor to initiate initial value (num1 = 0.0 and num2 = 0.0)
 
+    /*calculate based on num1, num2 and mode*/
     private Double calculateBiImpl() {
-        if (mode == BiOperatorModes.normal) {
+        if (mode == BiOperatorModes.NORMAL) {
             return num2;
         }
-        if (mode == BiOperatorModes.add) {
+        if (mode == BiOperatorModes.ADD) {
             if (num2 != 0) {
                 return num1 + num2;
             }
 
             return num1;
         }
-        if (mode == BiOperatorModes.minus) {
+        if (mode == BiOperatorModes.MINUS) {
             return num1 - num2;
         }
-        if (mode == BiOperatorModes.multiply) {
+        if (mode == BiOperatorModes.MULTIPLY) {
             return num1 * num2;
         }
-        if (mode == BiOperatorModes.divide) {
+        if (mode == BiOperatorModes.DIVIDE) {
             return num1 / num2;
         }
-        if (mode == BiOperatorModes.xpowerofy) {
+        if (mode == BiOperatorModes.XPOWEROFY) {
             return pow(num1,num2);
         }
 
@@ -55,9 +58,10 @@ public class Calculator {
         throw new Error();
     }
 
+    /*request calculation*/
     public Double calculateBi(BiOperatorModes newMode, Double num) {
         // i think the current works
-        if (mode == BiOperatorModes.normal) {
+        if (mode == BiOperatorModes.NORMAL) {
             num2 = 0.0;
             num1 = num;
             mode = newMode;
@@ -70,35 +74,38 @@ public class Calculator {
         }
     }
 
+    /*check equality*/
     public Double calculateEqual(Double num) {
-        return calculateBi(BiOperatorModes.normal, num);
+        return calculateBi(BiOperatorModes.NORMAL, num);
     }
 
+    /*reset the calculator, num1=num2=0, mode = normal*/
     public Double reset() {
         num2 = 0.0;
         num1 = 0.0;
-        mode = BiOperatorModes.normal;
+        mode = BiOperatorModes.NORMAL;
 
         return NaN;
     }
 
+    /*calculate difficult operation*/
     public Double calculateMono(MonoOperatorModes newMode, Double num) {
-        if (newMode == MonoOperatorModes.square) {
+        if (newMode == MonoOperatorModes.SQUARE) {
             return num * num;
         }
-        if (newMode == MonoOperatorModes.squareRoot) {
+        if (newMode == MonoOperatorModes.SQUAREROOT) {
             return Math.sqrt(num);
         }
-        if (newMode == MonoOperatorModes.oneDevidedBy) {
+        if (newMode == MonoOperatorModes.ONEDEVIDEBY) {
             return 1 / num;
         }
-        if (newMode == MonoOperatorModes.cos) {
+        if (newMode == MonoOperatorModes.COS) {
             return Math.cos(num);
         }
-        if (newMode == MonoOperatorModes.sin) {
+        if (newMode == MonoOperatorModes.SIN) {
             return Math.sin(num);
         }
-        if (newMode == MonoOperatorModes.tan) {
+        if (newMode == MonoOperatorModes.TAN) {
             if (num == 0 || num % 180 == 0) {
                 return 0.0;
             }
@@ -108,13 +115,13 @@ public class Calculator {
 
             return Math.tan(num);
         }
-        if (newMode == MonoOperatorModes.log) {
+        if (newMode == MonoOperatorModes.LOG) {
             return log10(num);
         }
-        if (newMode == MonoOperatorModes.rate) {
+        if (newMode == MonoOperatorModes.RATE) {
            return num / 100;
         }
-        if (newMode == MonoOperatorModes.abs) {
+        if (newMode == MonoOperatorModes.ABS) {
             return Math.abs(num);
         }
 

@@ -20,13 +20,17 @@ import java.awt.Font;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+import java.lang.Double;
+
 
 import java.io.*;
 
 public class UI implements ActionListener {
-   
+   /*make fields of class UI*/
+   // make frame
    private final JFrame frame;
-   
+
+   // make panel
    private final JPanel panel;
    private final JPanel panelSub1;
    private final JPanel panelSub2;
@@ -36,21 +40,27 @@ public class UI implements ActionListener {
    private final JPanel panelSub6;
    private final JPanel panelSub7;
    private final JPanel panelSub8;
-   
+
+   // make text and buttons
    private final JTextArea text;
-   private final JButton but[], butAdd, butMinus, butMultiply, butDivide,
-      butEqual, butCancel, butSquareRoot, butSquare, butOneDevidedBy,
-      butCos, butSin, butTan, butxpowerofy, butlog, butrate, butabs, butBinary;
+   private final JButton[] but;
+   private final JButton butAdd, butMinus, butMultiply, butDivide,
+      butEqual, butCancel;
+   private final JButton butSquareRoot, butSquare, butOneDevidedBy,
+      butCos, butSin, butTan;
+   private final JButton butxpowerofy, butlog, butrate, butabs, butBinary;
    private final Calculator calc;
    
    private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
       "7", "8", "9"};
-   
+
+   //font
    private final Font font;
    private final Font textFont;
 
-   
+   //constructor for class UI
    public UI() throws IOException {
+      //set frame and panel
       frame = new JFrame("Calculator PH");
 
       
@@ -64,13 +74,15 @@ public class UI implements ActionListener {
       panelSub6 = new JPanel(new FlowLayout());
       panelSub7 = new JPanel(new FlowLayout());
       panelSub8 = new JPanel(new FlowLayout());
-      
+
+      //set font
       font = new Font("Consolas",Font.PLAIN, 18);
       
       text = new JTextArea(1, 10);
       
       textFont = new Font("Consolas",Font.BOLD, 24);
-      
+
+      //set button
       but = new JButton[10];      
       for (int i = 0; i < 10; i++) {
          but[i] = new JButton(String.valueOf(i));
@@ -92,22 +104,26 @@ public class UI implements ActionListener {
       butabs = new JButton("abs(x)");      
       butCancel = new JButton("C");      
       butBinary = new JButton("Bin");      
-      
+
+      //initialize calculator
       calc = new Calculator();
       
    }
-   
-   public void init() {      
+
+   //initialize UI
+   public void init() {
+      // set frame
       frame.setSize(450, 450);
       frame.setVisible(true);
       frame.setLocationRelativeTo(null); 
       frame.setResizable(false);
       frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 
-      
+      // set font
       text.setFont(textFont);
       text.setEditable(false);
-      
+
+      // apply font on buttons
       for (int i = 0; i < 10; i++) {
          but[i].setFont(font);
       }      
@@ -128,7 +144,8 @@ public class UI implements ActionListener {
       butabs.setFont(font);
       butCancel.setFont(font);
       butBinary.setFont(font); 
-      
+
+      // set panel and locate buttons
       panel.add(Box.createHorizontalStrut(100));
       panelSub1.add(text);
       panel.add(panelSub1);
@@ -177,7 +194,8 @@ public class UI implements ActionListener {
       panelSub8.add(butabs);
       panelSub8.add(butBinary);
       panel.add(panelSub8);
-      
+
+      //add action to the buttons
       for (int i = 0; i < 10; i++) {
          but[i].addActionListener(this);
       }      
@@ -199,12 +217,14 @@ public class UI implements ActionListener {
       
       butEqual.addActionListener(this);
       butCancel.addActionListener(this);
-      
+
+      //add panel to frame
       frame.add(panel);
    }
    
    @Override
    public void actionPerformed(ActionEvent e) {
+      //determine which action should occur
       final Object source = e.getSource();
       
       for (int i = 0; i < 10; i++) {
@@ -215,66 +235,66 @@ public class UI implements ActionListener {
       }
       
       if (source == butAdd) {
-         writer(calc.calculateBi(Calculator.BiOperatorModes.add, reader()));
+         writer(calc.calculateBi(Calculator.BiOperatorModes.ADD, reader()));
       }
       
       if (source == butMinus) {
-         writer(calc.calculateBi(Calculator.BiOperatorModes.minus, reader()));
+         writer(calc.calculateBi(Calculator.BiOperatorModes.MINUS, reader()));
       }
       
       if (source == butMultiply) {
-         writer(calc.calculateBi(Calculator.BiOperatorModes.multiply,
+         writer(calc.calculateBi(Calculator.BiOperatorModes.MULTIPLY,
                                  reader()));
       }
       
       if (source == butDivide) {
          writer(calc
-                   .calculateBi(Calculator.BiOperatorModes.divide, reader()));
+                   .calculateBi(Calculator.BiOperatorModes.DIVIDE, reader()));
       }
       if (source == butxpowerofy) {
          writer(calc
-                   .calculateBi(Calculator.BiOperatorModes.xpowerofy, reader()));
+                   .calculateBi(Calculator.BiOperatorModes.XPOWEROFY, reader()));
       }
       
       if (source == butSquare) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.square,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.SQUARE,
                                    reader()));
       }
       
       if (source == butSquareRoot) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.squareRoot,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.SQUAREROOT,
                                    reader()));
       }
       
       if (source == butOneDevidedBy) {
          writer(calc.calculateMono(
-                                   Calculator.MonoOperatorModes.oneDevidedBy, reader()));
+                                   Calculator.MonoOperatorModes.ONEDEVIDEBY, reader()));
       }
       
       if (source == butCos) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.cos,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.COS,
                                    reader()));
       }
       
       if (source == butSin) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.sin,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.SIN,
                                    reader()));
       }
       
       if (source == butTan) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.tan,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.TAN,
                                    reader()));
       }
       if (source == butlog) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.log,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.LOG,
                                    reader()));
       }
       if (source == butrate) {
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.rate,
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.RATE,
                                    reader()));
       }
       if(source == butabs){
-         writer(calc.calculateMono(Calculator.MonoOperatorModes.abs, reader()));
+         writer(calc.calculateMono(Calculator.MonoOperatorModes.ABS, reader()));
       }
       
       if (source == butEqual) {
@@ -301,6 +321,7 @@ public class UI implements ActionListener {
    }
    
    public Double reader() {
+      //read data in display and parse to Double
       Double num;
       String str;
       str = text.getText();
@@ -311,6 +332,7 @@ public class UI implements ActionListener {
    }
    
    public void writer(final Double num) {
+      //write text on display of calculator
       if (Double.isNaN(num)) {
          text.setText("");
       } else {
