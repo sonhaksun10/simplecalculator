@@ -20,8 +20,6 @@ import java.awt.Font;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
-import java.lang.Double;
-
 
 import java.io.*;
 
