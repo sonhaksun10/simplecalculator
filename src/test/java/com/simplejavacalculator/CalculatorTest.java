@@ -32,6 +32,19 @@ class CalculatorTest {
     }
 
     @Test
+    void testNormal(){
+        Calculator calc = new Calculator();
+
+        // first opreation always give Nan
+        Double res = calc.calculateBi(Calculator.BiOperatorModes.add, 0.0);
+        assertEquals(NaN, res);
+
+        // second operation
+        res = calc.calculateEqual(2.0);
+        assertEquals(2.0, res);
+    }
+
+    @Test
     void testAdd() {
         Calculator calc = new Calculator();
 
@@ -42,6 +55,11 @@ class CalculatorTest {
         // second operation
         res = calc.calculateBi(Calculator.BiOperatorModes.add, 2.0);
         assertEquals(4.0, res);
+
+        calc.reset();
+        calc.calculateBi(Calculator.BiOperatorModes.add, 0.0);
+        res = calc.calculateBi(Calculator.BiOperatorModes.add, 2.0);
+        assertEquals(2.0, res);
     }
 
     @Test
