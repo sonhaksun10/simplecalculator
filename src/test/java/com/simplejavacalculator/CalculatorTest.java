@@ -184,6 +184,9 @@ class CalculatorTest {
 
         res = calc.calculateMono(Calculator.MonoOperatorModes.TAN, 360.);
         assertEquals(0.0, res);
+
+        res = calc.calculateMono(Calculator.MonoOperatorModes.TAN, 0.);
+        assertEquals(0.0, res);
     }
 
     @Test

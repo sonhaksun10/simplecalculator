@@ -49,7 +49,7 @@ public class UI implements ActionListener {
    private final JButton butxpowerofy, butlog, butrate, butabs, butBinary;
    private final Calculator calc;
    
-   private final String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
+   private final static String[] buttonValue = {"0", "1", "2", "3", "4", "5", "6",
       "7", "8", "9"};
 
    //font
