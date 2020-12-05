@@ -57,8 +57,8 @@ class CalculatorTest {
         assertEquals(4.0, res);
 
         calc.reset();
-        calc.calculateBi(Calculator.BiOperatorModes.add, 0.0);
-        res = calc.calculateBi(Calculator.BiOperatorModes.add, 2.0);
+        calc.calculateBi(Calculator.BiOperatorModes.add, 2.0);
+        res = calc.calculateBi(Calculator.BiOperatorModes.add, 0.0);
         assertEquals(2.0, res);
     }
 
