@@ -187,7 +187,7 @@ class CalculatorTest {
         Calculator calc = new Calculator();
 
         Double res = calc.calculateMono(Calculator.MonoOperatorModes.oneDevidedBy,0.0);
-        assertEquals(NaN, res);
+        assertEquals(Double.POSITIVE_INFINITY, res);
     }
 
     @Test
